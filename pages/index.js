@@ -8,7 +8,6 @@ export default function Home() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -16,6 +15,7 @@ export default function Home() {
 
   return (
     <div>
+      {/* Navbar */}
       <header style={isMobile ? styles.navbarMobile : styles.navbar}>
         <div style={isMobile ? styles.logoMobile : styles.logo}>
           <span style={styles.logoText}>
@@ -23,6 +23,7 @@ export default function Home() {
             <span style={styles.symbol}>{"/>"}</span>
           </span>
         </div>
+
         <div style={styles.ctaWrapper}>
           <a
             style={styles.ctaButton}
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Seção de Boas-Vindas */}
       <section style={styles.welcomeSection}>
         <p style={isMobile ? styles.mainTextLargeMobile : styles.mainTextLarge}>
           Conectando criatividade e tecnologia
@@ -59,10 +61,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Seção Sobre Nós */}
       <section style={styles.aboutSection}>
         <h2 style={styles.aboutTitle}>Sobre Nós</h2>
 
-        {/* ✅ Frase centralizada horizontalmente */}
         <div style={styles.centeredBox}>
           <p style={isMobile ? styles.mainTextMediumMobile : styles.mainTextMedium}>
             Da ideia ao lançamento e suporte contínuo por um preço fixo por mês.
@@ -74,33 +76,39 @@ export default function Home() {
         </p>
 
         <div style={styles.cardsContainer}>
-          <div style={styles.card}>
-            <FaUsers size={40} color="#1E88E5" />
-            <h3 style={styles.cardTitle}>Equipe confiável</h3>
-            <p style={styles.cardText}>
-              Oferecemos uma equipe dedicada que garante comunicação diária, cronogramas claros e código especializado, permitindo que você foque no crescimento.
-            </p>
-          </div>
-          <div style={styles.card}>
-            <FaCode size={40} color="#1E88E5" />
-            <h3 style={styles.cardTitle}>Desenvolvimento completo</h3>
-            <p style={styles.cardText}>
-              Assumimos seu projeto em qualquer estágio, garantindo planejamento, implantação e escalabilidade para um sucesso duradouro.
-            </p>
-          </div>
-          <div style={styles.card}>
-            <FaChartLine size={40} color="#1E88E5" />
-            <h3 style={styles.cardTitle}>Crescimento contínuo</h3>
-            <p style={styles.cardText}>
-              Somos seu parceiro estratégico, oferecendo suporte contínuo para inovação, crescimento e escalabilidade do seu produto.
-            </p>
-          </div>
+          <Card
+            icon={<FaUsers size={40} color="#1E88E5" />}
+            title="Equipe confiável"
+            text="Oferecemos uma equipe dedicada que garante comunicação diária, cronogramas claros e código especializado, permitindo que você foque no crescimento."
+          />
+          <Card
+            icon={<FaCode size={40} color="#1E88E5" />}
+            title="Desenvolvimento completo"
+            text="Assumimos seu projeto em qualquer estágio, garantindo planejamento, implantação e escalabilidade para um sucesso duradouro."
+          />
+          <Card
+            icon={<FaChartLine size={40} color="#1E88E5" />}
+            title="Crescimento contínuo"
+            text="Somos seu parceiro estratégico, oferecendo suporte contínuo para inovação, crescimento e escalabilidade do seu produto."
+          />
         </div>
       </section>
     </div>
   );
 }
 
+// Componente de Cartão
+function Card({ icon, title, text }) {
+  return (
+    <div style={styles.card}>
+      {icon}
+      <h3 style={styles.cardTitle}>{title}</h3>
+      <p style={styles.cardText}>{text}</p>
+    </div>
+  );
+}
+
+// Estilos
 const styles = {
   navbar: {
     display: 'flex',
